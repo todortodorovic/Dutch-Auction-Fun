@@ -82,8 +82,13 @@ export default function SaleStructurePage() {
     if (!document.getElementById('datepicker-portal-root')) {
       const datePickerPortalRoot = document.createElement('div')
       datePickerPortalRoot.id = 'datepicker-portal-root'
-      datePickerPortalRoot.style.position = 'absolute'
+      datePickerPortalRoot.style.position = 'fixed'
       datePickerPortalRoot.style.zIndex = '999999' // Higher z-index than token dropdown
+      datePickerPortalRoot.style.top = '0'
+      datePickerPortalRoot.style.left = '0'
+      datePickerPortalRoot.style.width = '100%'
+      datePickerPortalRoot.style.height = '100%'
+      datePickerPortalRoot.style.pointerEvents = 'none'
       document.body.appendChild(datePickerPortalRoot)
     }
     
@@ -299,6 +304,27 @@ export default function SaleStructurePage() {
                           calendarClassName="bg-indigo-900 text-white border border-indigo-500/30 rounded-lg shadow-lg"
                           popperClassName="z-[999999]"
                           portalId="datepicker-portal-root"
+                          // @ts-ignore - react-datepicker has incomplete types
+                          popperProps={{
+                            positionFixed: false,
+                            modifiers: [
+                              {
+                                name: "offset",
+                                options: {
+                                  offset: [0, 10],
+                                },
+                              },
+                            ],
+                          }}
+                          popperModifiers={[{
+                            name: 'preventOverflow',
+                            options: {
+                              rootBoundary: 'viewport',
+                              tether: false,
+                              altAxis: true,
+                            },
+                          }]}
+                          popperPlacement="top-start"
                         />
                         <div 
                           className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer"
