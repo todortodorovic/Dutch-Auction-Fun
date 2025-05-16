@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import WalletConnect from '@/components/WalletConnect'
 import { IconExternalLink } from '@tabler/icons-react'
+import { toast } from 'react-hot-toast'
 
 export default function ReviewPage() {
   // States for all data from previous steps
@@ -34,14 +36,14 @@ export default function ReviewPage() {
     const savedTokenName = localStorage.getItem('tokenName')
     const savedTokenSymbol = localStorage.getItem('tokenSymbol')
     const savedTokenDecimals = localStorage.getItem('tokenDecimals')
-    
+
     // Sale Structure & Configuration data
     const savedStartPrice = localStorage.getItem('startPrice')
     const savedEndPrice = localStorage.getItem('endPrice')
     const savedSaleAmount = localStorage.getItem('saleAmount')
     const savedStartDate = localStorage.getItem('startDate')
     const savedEndDate = localStorage.getItem('endDate')
-    
+
     // Project Info data
     const savedDescription = localStorage.getItem('description')
     const savedWebsiteUrl = localStorage.getItem('websiteUrl')
@@ -49,7 +51,7 @@ export default function ReviewPage() {
     const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
     const savedDiscordGroup = localStorage.getItem('discordGroup')
     const savedTelegramGroup = localStorage.getItem('telegramGroup')
-    
+
     if (savedProjectName) setProjectName(savedProjectName)
     if (savedSaleType) setSaleType(savedSaleType)
     if (savedTokenAddress) setTokenAddress(savedTokenAddress)
@@ -74,9 +76,11 @@ export default function ReviewPage() {
 
   // Handle sale creation
   const handleCreateSale = () => {
-    // Here you would implement the logic to create the sale
-    console.log('Creating sale...')
-    // You could redirect to a success page or dashboard after creation
+    alert('Token sale launched!')
+
+    setTimeout(() => {
+      window.location.href = 'http://localhost:3000'
+    }, 1000)
   }
 
   return (
@@ -86,7 +90,7 @@ export default function ReviewPage() {
         <div className="flex justify-end mb-6">
           <WalletConnect />
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
@@ -98,28 +102,28 @@ export default function ReviewPage() {
                   </div>
                   <span className="text-white font-medium">Creation & Branding</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                     <span className="text-white font-medium">2.</span>
                   </div>
                   <span className="text-white font-medium">Sale Structure</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                     <span className="text-white font-medium">3.</span>
                   </div>
                   <span className="text-white font-medium">Sale Configuration</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                     <span className="text-white font-medium">4.</span>
                   </div>
                   <span className="text-white font-medium">Project Info</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                     <span className="text-white font-medium">5.</span>
@@ -129,28 +133,28 @@ export default function ReviewPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Main Content */}
           <div className="lg:col-span-3">
             <div className="bg-indigo-900/40 backdrop-blur-sm rounded-2xl p-8 border border-indigo-500/30 h-full">
               <h2 className="text-2xl font-bold text-white mb-6">Review Your Sale</h2>
-              
+
               <div className="space-y-8">
                 {/* Token & Sale Information */}
                 <div className="bg-indigo-900/60 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/30">
                   <h3 className="text-xl font-semibold text-white mb-6">Token & Sale Information</h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Project Name</p>
                       <p className="text-white font-medium">{projectName || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Sale Type</p>
                       <p className="text-white font-medium">{saleType}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Token Address</p>
                       <p className="text-white font-medium">
@@ -167,62 +171,62 @@ export default function ReviewPage() {
                         ) : "Not specified"}
                       </p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Token Name</p>
                       <p className="text-white font-medium">{tokenName || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Token Symbol</p>
                       <p className="text-white font-medium">{tokenSymbol || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Token Decimals</p>
                       <p className="text-white font-medium">{tokenDecimals || "Not specified"}</p>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Sale Structure & Configuration */}
                 <div className="bg-indigo-900/60 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/30">
                   <h3 className="text-xl font-semibold text-white mb-6">Sale Structure & Configuration</h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Price</p>
                       <p className="text-white font-medium">{startPrice || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Sale Amount</p>
                       <p className="text-white font-medium">{saleAmount || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Start Date</p>
                       <p className="text-white font-medium">{startDate || "Not specified"}</p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">End Date</p>
                       <p className="text-white font-medium">{endDate || "Not specified"}</p>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Project Info */}
                 <div className="bg-indigo-900/60 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/30">
                   <h3 className="text-xl font-semibold text-white mb-6">Project Information</h3>
-                  
+
                   <div className="mb-6">
                     <p className="text-indigo-300 text-sm mb-2">Description</p>
                     <div className="bg-indigo-900/50 border border-indigo-500/30 rounded-xl p-4 text-white">
                       {description || "No description provided."}
                     </div>
                   </div>
-                  
+
                   <h4 className="text-lg font-medium text-white mb-4">Links</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
@@ -236,7 +240,7 @@ export default function ReviewPage() {
                         )}
                       </p>
                     </div>
-                    
+
                     <div>
                       <p className="text-indigo-300 text-sm mb-1">Twitter</p>
                       <p className="text-white font-medium flex items-center">
@@ -248,7 +252,7 @@ export default function ReviewPage() {
                         )}
                       </p>
                     </div>
-                    
+
                     {youtubeChannel && (
                       <div>
                         <p className="text-indigo-300 text-sm mb-1">YouTube</p>
@@ -260,7 +264,7 @@ export default function ReviewPage() {
                         </p>
                       </div>
                     )}
-                    
+
                     {discordGroup && (
                       <div>
                         <p className="text-indigo-300 text-sm mb-1">Discord</p>
@@ -272,7 +276,7 @@ export default function ReviewPage() {
                         </p>
                       </div>
                     )}
-                    
+
                     {telegramGroup && (
                       <div>
                         <p className="text-indigo-300 text-sm mb-1">Telegram</p>
@@ -287,9 +291,9 @@ export default function ReviewPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-10 flex justify-between">
-                <Link 
+                <Link
                   href="/create/fixed-price/project-info"
                   className="py-3 px-6 rounded-full border border-indigo-500 text-white hover:bg-indigo-800/50 transition-colors flex items-center"
                 >
@@ -298,7 +302,7 @@ export default function ReviewPage() {
                   </svg>
                   Back
                 </Link>
-                <button 
+                <button
                   onClick={handleCreateSale}
                   className="py-3 px-8 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors flex items-center"
                 >

@@ -232,22 +232,7 @@ export default function SaleConfigurationPage() {
                       </div>
                     </div>
                     
-                    <div>
-                      <p className="text-white mb-2">Max Allocation per Wallet</p>
-                      <div className="flex items-center">
-                        <input 
-                          type="text" 
-                          placeholder="Enter maximum"
-                          value={maxAllocation}
-                          onChange={(e) => setMaxAllocation(e.target.value)}
-                          className="flex-1 bg-indigo-900/50 border border-indigo-500/30 rounded-full py-3 px-6 text-white placeholder-indigo-300/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                        <div className="ml-4 bg-indigo-900/50 border border-indigo-500/30 rounded-full px-6 py-3 text-white font-medium flex items-center space-x-2">
-                          <span>{tokenName || 'Token'}</span>
-                          <span className="ml-2 text-xl font-bold">{tokenSymbol || ''}</span>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
                 
